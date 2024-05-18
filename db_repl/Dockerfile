@@ -1,7 +1,8 @@
 FROM debian
 RUN apt update && apt install -y postgresql postgresql-client postgresql-contrib iproute2 sudo
 USER postgres
-RUN echo "listen_addresses='*,10.5.0.5'" >> /etc/postgresql/15/main/postgresql.conf
+RUN echo "listen_addresses='*,10.5.0.5'" >> /etc/postgresql/15/main/postgresql.conf \
+&& echo "host all postgres 10.5.0.1/16 scram-sha-256" >> /etc/postgresql/15/main/pg_hba.conf
 USER root
 RUN echo "postgres ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 EXPOSE 5432
