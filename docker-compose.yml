@@ -1,14 +1,14 @@
 version: "3"
 services:
   db_image:
-    image: 192.168.0.23:5000/db_image
+    build: db/
     ports:
-      - 5432:5432
+      - 5433:5433
     networks:
       custom_net:
         ipv4_address: 10.5.0.5
   bot:
-    image: 192.168.0.23:5000/bot_image
+    build: bot/
     ports:
       - 5001:5001
     networks:
@@ -18,7 +18,7 @@ services:
     depends_on:
       - db_image
   db_repl_image:
-    image: 192.168.0.23:5000/db_repl_image
+    build: db_repl/
     depends_on:
       - bot
     restart: always
