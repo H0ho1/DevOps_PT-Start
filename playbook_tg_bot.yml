@@ -41,4 +41,4 @@
    - name: Launch infracstucture
      ansible.builtin.shell: |
       cd /home/ubuntu/deployment/DevOps_PT-Start &&
-      docker compose up
+      docker compose up -d
